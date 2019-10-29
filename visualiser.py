@@ -15,7 +15,7 @@ from quicksort import *
 #optional flags
 colorfade = True #makes the brightness of each bar proportional to its value
 uniformdist = True #makes the final result evenly-spaced bars
-algorithm = "quicksort" #also accepts "bubble"
+algorithm = "quick" #also accepts "bubble"
 
 #color settings
 white = (255,255,255)
