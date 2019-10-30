@@ -6,5 +6,7 @@ The visualiser features support for varying the speed of the animation, the leng
 Sonification is in the process of being ported over from an earlier version, and will be implemented soon.
 
 Sample:
+![sample run](sample_run.gif)
 
-![gif](quicksort_visualised.gif)
+For n = 500:
+![n = 500](quicksort_visualised.gif)
