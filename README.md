@@ -1,8 +1,10 @@
 # Sorting-Algorithms
-Porting over various sorting algorithms I made earlier this year in python2, complete with a stress testing function and visualiser/sonifier.
+Porting over various sorting algorithms I made earlier this year to python3, complete with a stress testing function and visualiser/sonifier.
 
-Sonification is in the process of being ported over from an earlier python2 version, and will be implemented soon.
+The visualiser features support for varying the speed of the animation, the length of the array to be sorted, and the distribution of the array values (default is a linear shuffle)
 
-Sample (Using quicksort):
+Sonification is in the process of being ported over from an earlier version, and will be implemented soon.
+
+Sample:
 
 ![gif](quicksort_visualised.gif)
