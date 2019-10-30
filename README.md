@@ -4,9 +4,19 @@ Porting over various sorting algorithms I made earlier this year to python3, com
 The visualiser features support for varying the speed of the animation, the length of the array to be sorted, and the distribution of the array values (default is a linear shuffle)
 
 Sonification is in the process of being ported over from an earlier version, and will be implemented soon.
-
+TODO:
+ - [x] Port visualiser
+ - [x] Add bubblesort
+ - [x] Add quicksort
+ - [ ] Add heapsort
+ - [ ] Add insertionsort
+ - [ ] Add mergesort
+ - [ ] Add binarytreesort
+ - [ ] Add bogosort
+ - [ ] Port sonifier
+ 
 Sample:
-
+---------------
 ![sample run](sample_run.gif)
 
 Example of quicksort for n = 500:
