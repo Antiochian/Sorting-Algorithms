@@ -11,7 +11,7 @@ Sample:
 
 Example of quicksort for n = 500:
 
-![n = 500](quicksort_visualised.gif)
+![n = 500](500n_quicksort.gif)
 
 TODO
 ----------
