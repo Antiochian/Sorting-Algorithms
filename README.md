@@ -25,3 +25,4 @@ TODO
  - [ ] Add binarytreesort
  - [ ] Add bogosort
  - [ ] Port sonifier
+ - [ ] Add side-by-side comparison?
