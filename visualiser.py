@@ -30,7 +30,7 @@ barwidthscale = 0.9
 defaultN = 200 #number of bars
 defaultM = 500 #maximum possible number of element in array
 
-animFPS = 10000
+animFPS = 60
 menuFPS = 60
 
 #pygame setup
