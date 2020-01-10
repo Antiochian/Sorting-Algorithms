@@ -10,6 +10,7 @@ import pygame
 import random
 import sys
 import numpy as np
+import time
 import bubblesort_
 import quicksort_
 import heapsort_
@@ -21,12 +22,13 @@ TABLE OF CONTENTS:
 2. Algorithm Library
 3. Helper functions
 4. Main Loop
-Note: The actual sorting step is precomputed by the menusetup() function in the background
 """
 #optional flags
 colorfade = True #makes the brightness of each bar proportional to its value
 uniformdist = True #makes the final result evenly-spaced bars
-algorithm = "bubblesort" #default algorithm, also accepts "bubble"
+time_normalised = True #makes it so the animation always takes 5 seconds
+target_time = 5
+algorithm = "quicksort" #default algorithm
 
 #color settings
 white = (255,255,255)
@@ -50,7 +52,7 @@ barwidthscale = 0.9
 defaultN = 100 #number of bars
 defaultM = 500 #maximum possible number of element in array
 
-animFPS = 60
+animFPS = 100
 menuFPS = 30
 
 #pygame setup
@@ -72,34 +74,54 @@ algorithm_dictionary['bubblesort'] = bubblesort_.recorder
 algorithm_dictionary['quicksort'] = quicksort_.recorder
 algorithm_dictionary['heapsort'] = heapsort_.recorder
 
-#################################
-    
-def drawframe(row):
+
+##################################################
+def generate_array(N,M):
+    array = []
+    if uniformdist:
+        for i in range(N):
+            array.append(i+1)
+        np.random.shuffle(array)
+    else:
+        for i in range(N):
+            array.append(random.randint(0,M))
+    return array
+
+def drawframe(row,prevrow=False):
+    if type(prevrow) == bool:
+        prevrow = [0]*len(row)
     #set up scale
     scale = Ny/max(row)
     barwidth = Nx/len(row)
     index = 0
-    window.fill(bgcolor)
-    #DEBUG: Draw only 1st bar:
     for i in range(len(row)):
-        if colorfade:
-            currentbarcolor = (0,0,0)
-            currentbarcolor = (barcolor[0] * row[i]/max(row), barcolor[1] * row[i]/max(row), barcolor[2] * row[i]/max(row))
-        else:
-            currentbarcolor = barcolor
-        barheight = row[i]*scale
-        pygame.draw.rect(surf, currentbarcolor, (i*barwidth, Ny-barheight, barwidth*barwidthscale, barheight))
+        if row[i] != prevrow[i]:#condition to actually draw
+            if colorfade:
+                currentbarcolor = (0,0,0)
+                currentbarcolor = (barcolor[0] * row[i]/max(row), barcolor[1] * row[i]/max(row), barcolor[2] * row[i]/max(row))
+            else:
+                currentbarcolor = barcolor
+            barheight = row[i]*scale
+            pygame.draw.rect(surf, bgcolor, (i*barwidth, 0, barwidth*barwidthscale, Ny))
+            pygame.draw.rect(surf, currentbarcolor, (i*barwidth, Ny-barheight, barwidth*barwidthscale, barheight))
         index += 1
     return
     
 def play_animation(record):
-    variableanimFPS = animFPS #reset animFPS to default
+#    t0 = time.time()
+    if time_normalised:
+        variableanimFPS = len(record)/target_time
+    else:
+        variableanimFPS = animFPS #reset animFPS to default
     #variableanimFPS = min(120,int(len(record)/(5))) #normalised animation speed
     labelstring = algorithm+", n = "+str(defaultN)+", FPS = "+str(variableanimFPS)
     labelsurf = renderlabel(labelstring)
     for i in range(record.shape[0]): #for each row
-        surf.fill(bgcolor)
-        drawframe(record[i,:]) 
+        #surf.fill(bgcolor)
+        if i != 0:
+            drawframe(record[i,:],record[i-1,:]) 
+        else:
+            drawframe(record[i,:]) 
         clock.tick(variableanimFPS)
         window.blit(surf,(0,0))
         window.blit(labelsurf,(0,0))
@@ -108,7 +130,7 @@ def play_animation(record):
             if event.type == pygame.QUIT or pygame.key.get_pressed()[27]: #detect attempted exit
                 pygame.quit()
                 sys.exit()
-            if pygame.key.get_pressed()[114]:
+            if pygame.key.get_pressed()[114] or pygame.mouse.get_pressed()[0]:
                 menusetup()
                 return
             if pygame.key.get_pressed()[273]:
@@ -119,20 +141,15 @@ def play_animation(record):
                 variableanimFPS -= 5
                 labelstring = algorithm+", n = "+str(defaultN)+", FPS = "+str(variableanimFPS)
                 labelsurf = renderlabel(labelstring)
+#    print("Target time taken: ",len(record)/variableanimFPS)
+#    print("Actual time taken: ",time.time()-t0)
     return
         
 def menusetup( displaymenu = True,N = defaultN, M = defaultM):    
     #generate array
     fadein(transparentgrey,500)
     surf.fill(bgcolor)
-    array = []
-    if uniformdist:
-        for i in range(N):
-            array.append(i+1)
-        np.random.shuffle(array)
-    else:
-        for i in range(N):
-            array.append(random.randint(0,M))
+    array = generate_array(N,M)
             
     global record
     record = algorithm_dictionary[algorithm](array)  
@@ -219,3 +236,4 @@ while True:
             algorithm = "heapsort"
             menusetup(False)
             play_animation(record)
+ 
