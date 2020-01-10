@@ -1,7 +1,7 @@
 # Sorting-Algorithms
 Various sorting algorithms I made earlier this year, as well a stress testing function and a visualiser. Sonifier should be on its way soon too.
 
-The visualiser features support for varying the speed of the animation (up and down arrow keys), the length of the array to be sorted, and the distribution of the array values (default is a linear shuffle)
+The visualiser features a nice UI, support for varying the speed of the animation (up and down arrow keys), the length of the array to be sorted, and the distribution of the array values (default is a linear shuffle)
 
 Sonification is in the process of being ported over from an earlier version, and will be implemented soon.
  
