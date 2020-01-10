@@ -11,9 +11,11 @@ import random
 import sys
 import numpy as np
 import time
+
 import bubblesort_
 import quicksort_
 import heapsort_
+import insertionsort_
 """
 ------------------
 TABLE OF CONTENTS:
@@ -57,13 +59,13 @@ menuFPS = 30
 
 #pygame setup
 pygame.init()
-window = pygame.display.set_mode( (Nx,Ny) )
+window = pygame.display.set_mode( (Nx,Ny), pygame.RESIZABLE )
 window.fill(bgcolor)
 pygame.display.update()
 pygame.display.set_caption("Sorting Visualiser")
 surf = pygame.Surface( (Nx,Ny))
 surf.fill(bgcolor)
-pausescreen = pygame.Surface( (Nx,Ny), pygame.SRCALPHA ) #pause screen
+pausescreen = pygame.Surface( (Nx,Ny), pygame.SRCALPHA,pygame.RESIZABLE ) #pause screen
 window.blit(surf,(0,0))
 clock = pygame.time.Clock() 
 
@@ -73,7 +75,7 @@ algorithm_dictionary = {}
 algorithm_dictionary['bubblesort'] = bubblesort_.recorder
 algorithm_dictionary['quicksort'] = quicksort_.recorder
 algorithm_dictionary['heapsort'] = heapsort_.recorder
-
+algorithm_dictionary['insertionsort'] = insertionsort_.recorder
 
 ##################################################
 def generate_array(N,M):
@@ -110,7 +112,7 @@ def drawframe(row,prevrow=False):
 def play_animation(record):
 #    t0 = time.time()
     if time_normalised:
-        variableanimFPS = len(record)/target_time
+        variableanimFPS = max(1,int(len(record)/target_time))
     else:
         variableanimFPS = animFPS #reset animFPS to default
     #variableanimFPS = min(120,int(len(record)/(5))) #normalised animation speed
@@ -219,11 +221,14 @@ while True:
             (Nx, Ny) = event.size
             window = pygame.display.set_mode((Nx, Ny), pygame.RESIZABLE)
             surf = pygame.display.set_mode((Nx, Ny), pygame.RESIZABLE)
+            pausescreen = pygame.display.set_mode((Nx, Ny), pygame.SRCALPHA,pygame.RESIZABLE)
             menusetup()
         if pygame.key.get_pressed()[114]: #reset key
             menusetup()
         if pygame.mouse.get_pressed()[0] or pygame.key.get_pressed()[32]: #default play
             play_animation(record)
+        
+        #select algorithm
         if pygame.key.get_pressed()[49]: #1
             algorithm = "quicksort"
             menusetup(False)
@@ -236,4 +241,7 @@ while True:
             algorithm = "heapsort"
             menusetup(False)
             play_animation(record)
- 
+        elif pygame.key.get_pressed()[52]: #4
+            algorithm = "insertionsort"
+            menusetup(False)
+            play_animation(record)
