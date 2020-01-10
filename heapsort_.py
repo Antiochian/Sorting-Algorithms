@@ -41,5 +41,3 @@ def heapify(array,n,i): #i = root index
         global record #add to record
         record = np.append(record,[array],axis = 0)
         heapify(array,n,current_largest) #only persist if i has changed
-    
-print(recorder([ 1,  3,  2, 34, 24, 23,  4]))
