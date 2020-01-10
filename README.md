@@ -7,7 +7,7 @@ Sonification is in the process of being ported over from an earlier version, and
  
 Sample:
 ---------------
-![sample run](sample_run.gif)
+![sample run](demo.gif)
 
 Example of quicksort for n = 500:
 
