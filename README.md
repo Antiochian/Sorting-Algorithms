@@ -19,7 +19,7 @@ TODO
  - [x] Port visualiser
  - [x] Add bubblesort
  - [x] Add quicksort
- - [ ] Add heapsort
+ - [x] Add heapsort
  - [ ] Add insertionsort
  - [ ] Add mergesort
  - [ ] Add binarytreesort
