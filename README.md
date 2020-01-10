@@ -20,7 +20,7 @@ TODO
  - [x] Add bubblesort
  - [x] Add quicksort
  - [x] Add heapsort
- - [ ] Add insertionsort
+ - [x] Add insertionsort
  - [ ] Add mergesort
  - [ ] Add binarytreesort
  - [ ] Add bogosort
