@@ -16,6 +16,7 @@ import bubblesort_
 import quicksort_
 import heapsort_
 import insertionsort_
+import mergesort_
 """
 ------------------
 TABLE OF CONTENTS:
@@ -76,6 +77,7 @@ algorithm_dictionary['bubblesort'] = bubblesort_.recorder
 algorithm_dictionary['quicksort'] = quicksort_.recorder
 algorithm_dictionary['heapsort'] = heapsort_.recorder
 algorithm_dictionary['insertionsort'] = insertionsort_.recorder
+algorithm_dictionary['mergesort'] = mergesort_.recorder
 
 ##################################################
 def generate_array(N,M):
@@ -112,7 +114,7 @@ def drawframe(row,prevrow=False):
 def play_animation(record):
 #    t0 = time.time()
     if time_normalised:
-        variableanimFPS = max(1,int(len(record)/target_time))
+        variableanimFPS = max(3,int(len(record)/target_time))
     else:
         variableanimFPS = animFPS #reset animFPS to default
     #variableanimFPS = min(120,int(len(record)/(5))) #normalised animation speed
@@ -245,3 +247,8 @@ while True:
             algorithm = "insertionsort"
             menusetup(False)
             play_animation(record)
+        elif pygame.key.get_pressed()[53]: #5
+            algorithm = "mergesort"
+            menusetup(False)
+            play_animation(record)
+        
