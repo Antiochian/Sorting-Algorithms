@@ -21,7 +21,7 @@ TODO
  - [x] Add quicksort
  - [x] Add heapsort
  - [x] Add insertionsort
- - [ ] Add mergesort
+ - [x] Add mergesort
  - [ ] Add binarytreesort
  - [ ] Add bogosort
  - [ ] Port sonifier
