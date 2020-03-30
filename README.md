@@ -1,5 +1,5 @@
 # Sorting-Algorithms
-Various sorting algorithms I made earlier this year, as well a stress testing function and a visualiser. Sonifier should be on its way soon too.
+Various sorting algorithms I made earlier this year, as well a stress testing function and a visualiser. Sonifier should be on its way soon too. Run ```visualiser.py``` to start.
 
 The visualiser features a nice UI, support for varying the speed of the animation (up and down arrow keys), the length of the array to be sorted, and the distribution of the array values (default is a linear shuffle)
 
